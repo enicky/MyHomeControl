@@ -11,11 +11,8 @@ var mySensorEnums = require('./enums');
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 var _currentDevices = new Object();
-var tungus = require('tungus');
-var mongoose = require('mongoose');
 var fs = require('fs');
 var path = require('path');
-var mkdirp = require('mkdirp');
 
 
 var MySensorNode = function() {
