@@ -246,6 +246,8 @@ var MySensorNode = function() {
   }
   //return beautifum string ;o)
   this.prettify = function(message, that) {
+    console.log('message : ', message);
+
     var radioId;
     var childId;
     var messageType;
