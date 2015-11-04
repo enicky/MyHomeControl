@@ -14,17 +14,15 @@ module.exports = {
 
     var id = 'homer@simpsons.com';
 
-    MyModel.create({
-      name : 'test'
-    }).exec(function(err, ress){
-      MyModel.find({}).exec(function(err, mymodels){
+
+      MyModel.find({limit:5, sort:'createdAt DESC'}).order.limit(10).exec(function(err, mymodels){
         mymodels.forEach(function(index, item){
           sails.log('debug','Item => ', item, index.name, index.createdAt);
         });
       })
       sails.log('debug','Finished creating first blabla : ', ress);
       return res.view('homepage');
-    })
+
 
   }
 };
