@@ -702,7 +702,7 @@ MySensorNode.prototype.addDevice = function(internalid, devicetype, that) {
 
 MySensorNode.prototype.saveDeviceInfo = function(deviceInfo, internalid, cb) {
   var that = this;
-  var Sensor = mongoose.model('SensorNode');
+  var Sensor = that.sails.models.sensor;
 
 
   Sensor.findOneAndUpdate({

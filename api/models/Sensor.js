@@ -8,8 +8,14 @@
 module.exports = {
   adapter: 'couch',
   attributes: {
-    deviceId : { type : 'integer'},
-    sensorId : {type : 'integer'}
+    deviceId: {type: 'integer'},
+    sensorId: { type: 'integer'},
+      type: {type: 'string'},
+      counter_failed: {type: 'integer'},
+      counter_retries: {type: 'integer'},
+      counter_received: {type: 'integer'},
+      counter_sent: {type: 'integer'}
+
   }
 };
 
