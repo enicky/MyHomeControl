@@ -246,7 +246,7 @@ var MySensorNode = function() {
   }
   //return beautifum string ;o)
   this.prettify = function(message, that) {
-    console.log('message : ', message);
+    //console.log('message : ', message);
 
     var radioId;
     var childId;
@@ -292,7 +292,7 @@ var MySensorNode = function() {
       //console.log('message :', message);
       var prettyString = that.prettify(message, that);
       var now = Date.create().format('{d}/{M}/{yyyy} {HH}:{mm}:{ss}');
-      console.log('[' + now + '] handlePretty : ' + prettyString);
+      console.log('[' + now + '] : ' + prettyString);
     }
     var splittedMessage = message.split(';');
     if (splittedMessage.length > 3 && splittedMessage.length < 7) {
@@ -617,7 +617,7 @@ MySensorNode.prototype.openConnection = function(cb) {
   this._serialPort.on("open", function() {
 
     that._serialPort.on('data', function(data) {
-      message = data.toString('utf8');
+      message = data.toString('utf8').replace(/(\r\n|\n|\r)/gm,"");
       that.handleMessage(message, that);
     });
 
