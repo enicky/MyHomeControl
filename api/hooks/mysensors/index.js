@@ -2,7 +2,7 @@
  * Created by enicky on 4/11/2015.
  */
 var SerialPort = require("serialport").SerialPort;
-var MySensorNode = require('../../../lib/mysensors');
+var MySensorNode = require('./mysensors');
 
 module.exports = function mySimpleHook(sails) {
 
