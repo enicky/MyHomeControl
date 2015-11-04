@@ -307,7 +307,7 @@ var MySensorNode = function() {
 
       //console.log('internalid', internalid);
 
-
+return;
       that.getDeviceInfo(radioId, childId, function(err, deviceInfo) {
         if (deviceInfo == null && (parseInt(messageType) != enums.SensorCommand.C_INTERNAL.value && parseInt(messageType) != enums.SensorCommand.C_PRESENTATION.value)) return;
         if (splittedMessage.length == 6) payload = splittedMessage[5];
@@ -618,7 +618,6 @@ MySensorNode.prototype.openConnection = function(cb) {
 
     that._serialPort.on('data', function(data) {
       message = data.toString('utf8');
-      console.log('da : ', message);
       that.handleMessage(message, that);
     });
 
