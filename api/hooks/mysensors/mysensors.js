@@ -15,21 +15,16 @@ var fs = require('fs');
 var path = require('path');
 
 
-var MySensorNode = function() {
+var MySensorNode = function(sails) {
 
+  this.sails = sails;
   var enums = new mySensorEnums();
-
-
   var _debug = false;
   var _portname = '/dev/ttyMySensorsGateway';
   var _serialPort = null;
   var commandsMap = {};
-
   var _units = "M";
-
   var _gatewayVersion = '';
-
-
 
   this.getMessageTypeName = function(type) {
     switch (parseInt(type)) {
@@ -307,8 +302,9 @@ var MySensorNode = function() {
 
       //console.log('internalid', internalid);
 
-return;
+
       that.getDeviceInfo(radioId, childId, function(err, deviceInfo) {
+        sails.log('debug','DeviceInfo found : ', deviceInfo);
         if (deviceInfo == null && (parseInt(messageType) != enums.SensorCommand.C_INTERNAL.value && parseInt(messageType) != enums.SensorCommand.C_PRESENTATION.value)) return;
         if (splittedMessage.length == 6) payload = splittedMessage[5];
         switch (parseInt(messageType)) {
@@ -574,6 +570,7 @@ return;
 
 
   }
+
   this.sendCompleteMessage = function(message) {
     var targetMessage = message + '\n';
     this._serialPort.write(targetMessage);
@@ -620,9 +617,7 @@ MySensorNode.prototype.openConnection = function(cb) {
       message = data.toString('utf8').replace(/(\r\n|\n|\r)/gm,"");
       that.handleMessage(message, that);
     });
-
     return cb();
-
   });
 }
 
@@ -741,14 +736,10 @@ MySensorNode.prototype.getDeviceInfo = function(radioId, childId, cb) {
   if (childId == 255) return cb(null, null);
   if (radioId == 0 && childId == 0) return cb(null, null);
   var internalId = radioId + ',' + childId;
-  var Sensor = mongoose.model('SensorNode');
-  Sensor.findOne({
-    deviceid: radioId.toString(),
-    sensorid: childId.toString()
-  }).exec(function(err, sensor) {
-    if (err) console.error('Error getDeviceInfo : ', err);
-    if (sensor == null) return cb(null, null);
-    return cb(null, sensor);
+  Sensor.find({ deviceId : radioId, sensorId : childId}).exec(function(err, s){
+    if(err) sails.log('error', 'Error GetDeviceInfo : ', err);
+    if(s == null) return cb(null, null);
+    return cb(null, s);
   });
 }
 exports = module.exports = MySensorNode;
