@@ -726,7 +726,7 @@ MySensorNode.prototype.getDeviceInfo = function(radioId, childId, cb) {
   if (radioId == 0 && childId == 0) return cb(null, null);
   var internalId = radioId + ',' + childId;
 
-  this.sails.models.sensor.find({ deviceId : radioId, sensorId : childId}).exec(function(err, s){
+  this.sails.models.sensor.findOne({ deviceId : radioId, sensorId : childId}).exec(function(err, s){
     if(err) sails.log('error', 'Error GetDeviceInfo : ', err);
     if(s == null) return cb(null, null);
     return cb(null, s);
