@@ -702,10 +702,9 @@ MySensorNode.prototype.addDevice = function(internalid, devicetype, that) {
 
 MySensorNode.prototype.saveDeviceInfo = function(deviceInfo, internalid, cb) {
   var that = this;
-  var Sensor = that.sails.models.sensor;
 
 
-  Sensor.findOneAndUpdate({
+  that.sails.models.sensor.findOneAndUpdate({
     internalid: internalid.replace('/', ',')
   }, {
     $set: {
@@ -720,15 +719,6 @@ MySensorNode.prototype.saveDeviceInfo = function(deviceInfo, internalid, cb) {
     //console.log('update : ', up);
     return cb(null, true);
   });
-
-  /*
-   this.redisClient.set(internalid, JSON.stringify(deviceInfo), function(err, res){
-   if(err) return cb(err);
-   that.redisClient.save(function(err, res){
-   return cb(null, true);
-   });
-   });
-   */
 };
 
 //get device information from redis server ...
