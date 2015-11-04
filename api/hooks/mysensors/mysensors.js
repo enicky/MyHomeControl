@@ -447,7 +447,7 @@ var MySensorNode = function(sails) {
               if (deviceInfo.counter_sent == null) deviceInfo.counter_sent = 1;
               else deviceInfo.counter_sent = parseFloat(deviceInfo.counter_sent) + 1;
 
-              that.saveDeviceInfo(deviceInfo, internalid, function(err, result) {
+              that.saveDeviceInfo(that, deviceInfo, internalid, function(err, result) {
                 if (err) console.error('error saving deviceInfo (REQUEST_VARIABLE) : ' + err);
                 that.sendMessage(internalid, enums.SensorCommand.C_SET.value, subType, deviceInfo.value);
               });
@@ -460,7 +460,7 @@ var MySensorNode = function(sails) {
             if (deviceInfo != null) {
               if (deviceInfo.counter_received == null) deviceInfo.counter_received = 1;
               else deviceInfo.counter_received = parseFloat(deviceInfo.counter_received) + 1;
-              that.saveDeviceInfo(deviceInfo, internalid, function(err, result) {
+              that.saveDeviceInfo(that, deviceInfo, internalid, function(err, result) {
                 if (err) console.error('error saving deviceInfo (SET_VARIABLE) : ' + err);
               });
             }
@@ -548,7 +548,7 @@ var MySensorNode = function(sails) {
             }
             if (valid) {
               deviceInfo.value = payload;
-              that.saveDeviceInfo(deviceInfo, internalid, function(err, res) {
+              that.saveDeviceInfo(that, deviceInfo, internalid, function(err, res) {
                 if (err) console.error('error saving deviceInfo (SET_VARIABLE) : ' + err);
               });
             } else {
@@ -700,8 +700,7 @@ MySensorNode.prototype.addDevice = function(internalid, devicetype, that) {
 
 }
 
-MySensorNode.prototype.saveDeviceInfo = function(deviceInfo, internalid, cb) {
-  var that = this;
+MySensorNode.prototype.saveDeviceInfo = function(that, deviceInfo, internalid, cb) {
 
 
   that.sails.models.sensor.findOneAndUpdate({
