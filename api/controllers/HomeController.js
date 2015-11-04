@@ -15,7 +15,7 @@ module.exports = {
     var id = 'homer@simpsons.com';
 
 
-      MyModel.find({limit:5, sort:'createdAt DESC'}).exec(function(err, mymodels){
+      MyModel.find({limit:5}).sort({ createdAt: 'desc' }).exec(function(err, mymodels){
         mymodels.forEach(function(index, item){
           sails.log('debug','Item => ', item, index.name, index.createdAt);
         });
