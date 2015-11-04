@@ -10,6 +10,9 @@ module.exports = function mySimpleHook(sails) {
     startMySensorsProcess: function(){
       sails.log('debug','Starting the Process to poll for the serial port ... ');
       var m = new MySensorNode(sails);
+      m.on('sensor.reading', function(data){
+        sails.log('debug','Received Sensor Reading : ', data);
+      });
       m.init({debug : true, portname : '/dev/ttyMySensorsGateway'});
       m.openConnection(function(){
         m.start();
