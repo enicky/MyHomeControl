@@ -19,9 +19,10 @@ module.exports = {
         mymodels.forEach(function(index, item){
           sails.log('debug','Item => ', item, index.name, index.createdAt);
         });
+        return res.view('homepage');
       })
-      sails.log('debug','Finished creating first blabla : ', ress);
-      return res.view('homepage');
+
+
 
 
   }
