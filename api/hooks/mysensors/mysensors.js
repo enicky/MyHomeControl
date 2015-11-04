@@ -616,8 +616,9 @@ MySensorNode.prototype.openConnection = function(cb) {
   var that = this;
   this._serialPort.on("open", function() {
 
-    that._serialPort.on('data', function(message) {
-      message = message.toString('utf8');
+    that._serialPort.on('data', function(data) {
+      message = data.toString('utf8');
+      console.log('da : ', message);
       that.handleMessage(message, that);
     });
 
