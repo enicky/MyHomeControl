@@ -705,13 +705,13 @@ MySensorNode.prototype.saveDeviceInfo = function(that, deviceInfo, internalid, c
   that.sails.models.sensor.update({
     internalid: internalid.replace('/', ',')
   }, {
-    $set: {
+
       type: deviceInfo.type,
       counter_failed: deviceInfo.counter_failed,
       counter_retries: deviceInfo.counter_retries,
       counter_received: deviceInfo.counter_received,
       counter_sent: deviceInfo.counter_sent
-    }
+
   }, function(err, up) {
     if (err) console.error('error update doc : ', err);
     //console.log('update : ', up);
