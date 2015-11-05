@@ -393,7 +393,7 @@ var MySensorNode = function(sails) {
                 that.newDevice(internalid, "temperaturesensor", that);
                 break;
               case enums.SensorSensor.S_HUM.value:
-                that.newDevice(internalid, "humiditysensor", that);
+                that.newDevice(internalid, enums.SensorSensor.S_HUM, that);
                 break;
               case enums.SensorSensor.S_BARO.value:
                 that.newDevice(internalid, "barometricsensor", that);
