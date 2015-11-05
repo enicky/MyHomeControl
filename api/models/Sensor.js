@@ -6,7 +6,6 @@
 */
 
 module.exports = {
-  adapter: 'couch',
   attributes: {
     deviceId: {type: 'integer'},
     sensorId: { type: 'integer'},
