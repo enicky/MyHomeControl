@@ -684,6 +684,7 @@ MySensorNode.prototype.addDevice = function(internalid, devicetype, that) {
         type: devicetype,
         deviceTypeString: deviceTypeString
       };
+      sails.log('debug','Adding newSensor : ', newSensor);
 
       that.sails.models.sensor.create(newSensor, function(err, savedSensor) {
         if (err) console.error('error adding device  ... ' + err);
