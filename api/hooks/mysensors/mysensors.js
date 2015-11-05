@@ -466,6 +466,9 @@ var MySensorNode = function(sails) {
             }
             switch (subType) {
               case enums.SensorData.V_HUM.value:
+                if(deviceInfo == null){
+                  that.newDevice(internalid, enums.SensorSensor.S_HUM, that);
+                }
                 valid = true;
                 that.emit('sensor.reading', {
                   id: internalid,
