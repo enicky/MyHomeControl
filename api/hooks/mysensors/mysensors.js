@@ -304,7 +304,7 @@ var MySensorNode = function(sails) {
 
 
       that.getDeviceInfo(radioId, childId, function(err, deviceInfo) {
-        sails.log('debug','DeviceInfo found : ', deviceInfo);
+        //sails.log('debug','DeviceInfo found : ', deviceInfo);
         //if (deviceInfo == null && (parseInt(messageType) != enums.SensorCommand.C_INTERNAL.value && parseInt(messageType) != enums.SensorCommand.C_PRESENTATION.value)) return;
         if (splittedMessage.length == 6) payload = splittedMessage[5];
         switch (parseInt(messageType)) {
