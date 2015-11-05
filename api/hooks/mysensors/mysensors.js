@@ -490,7 +490,7 @@ var MySensorNode = function(sails) {
                   value: payload,
                   type: 'temperature',
                   typeInt : enums.SensorData.V_HUM.value,
-                  typeString :  that.getVariableTypeName(enums.SensorData.V_HUM.value)
+                  typeString :  that.getVariableTypeName(enums.SensorData.V_TEMP.value)
                 });
                 break;
               case enums.SensorData.V_TRIPPED.value:
