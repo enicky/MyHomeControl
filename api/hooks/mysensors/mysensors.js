@@ -664,7 +664,7 @@ MySensorNode.prototype.addDevice = function(internalid, devicetype, that) {
 
   _currentDevices[internalid] = newSensor;
   var splittedId = internalid.split('/');
-  var deviceTypeString = that.getDeviceTypeName(devicetype);
+  var deviceTypeString = that.getDeviceTypeName(devicetype.value);
 
   that.sails.models.sensor.findOne({
     internalid: internalid.replace('/', ',')
@@ -678,10 +678,10 @@ MySensorNode.prototype.addDevice = function(internalid, devicetype, that) {
       })
     } else {
       var newSensor = {
-        deviceid: splittedId[0].toString(),
-        sensorid: splittedId[1].toString(),
-        internalid: splittedId,
-        type: devicetype,
+        deviceid: parseInt(splittedId[0].toString()),
+        sensorid: parseInt(splittedId[1].toString()),
+        internalid: internalid.toString().replace('/',','),
+        type: devicetype.value,
         deviceTypeString: deviceTypeString
       };
       sails.log('debug','Adding newSensor : ', newSensor);
