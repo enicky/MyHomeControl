@@ -1,17 +1,23 @@
 /**
- * UserController.js 
- * 
- * @module      :: Controller
- * @description :: Provides the base user
- *                 actions used to make waterlock work.
- *                 
- * @docs        :: http://waterlock.ninja/documentation
+ * UserController
+ *
+ * @description :: Server-side logic for managing Users
+ * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-module.exports = require('waterlock').actions.user({
-  /* e.g.
-    action: function(req, res){
-  
-    }
-  */
-});
+module.exports = {
+  /**
+   * @override
+   */
+  create: function(req, res, next) {
+    sails.services.passport.protocols.local.register(req.body, function(err, user) {
+      if (err) return res.negotiate(err);
+
+      res.ok(user);
+    });
+  },
+
+  me: function(req, res) {
+    res.ok(req.user);
+  }
+};
