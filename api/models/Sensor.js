@@ -11,6 +11,7 @@ module.exports = {
     sensorId: { type: 'integer'},
     internalid : {type : 'string'},
       type: {type: 'string'},
+    deviceTypeString : {type : 'string'},
       counter_failed: {type: 'integer'},
       counter_retries: {type: 'integer'},
       counter_received: {type: 'integer'},

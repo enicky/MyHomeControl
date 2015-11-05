@@ -12,6 +12,17 @@ module.exports = function mySimpleHook(sails) {
       var m = new MySensorNode(sails);
       m.on('sensor.reading', function(data){
         sails.log('debug','Received Sensor Reading : ', data);
+        var newSensorValyue = {
+          internalId : data.id,
+          deviceId : parseInt(data.id.substring(0, data.id.indexOf('/'))),
+          sensorId : parseInt(data.id.substring(data.id.indexOf('/') + 1)),
+          value : parseFloat(data.value),
+          type : data.typeInt,
+          deviceTypeString : data.typeString
+        };
+        Reading.create(newSensorValyue, function(err, saved){
+          if(err) sails.log('error','Error saving sensorValue', err);
+        })
       });
       m.on('device.add', function(data){
         sails.log('debug','device add ... ', data);
