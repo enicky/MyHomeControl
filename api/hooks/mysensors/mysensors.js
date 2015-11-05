@@ -680,7 +680,7 @@ MySensorNode.prototype.addDevice = function(internalid, devicetype, that) {
         deviceTypeString: deviceTypeString
       };
 
-      that.sails.models.sensor.create(function(err, savedSensor) {
+      that.sails.models.sensor.create(newSensor, function(err, savedSensor) {
         if (err) console.error('error adding device  ... ' + err);
         that.emit('device.add', {
           deviceid: splittedId[0].toString()
