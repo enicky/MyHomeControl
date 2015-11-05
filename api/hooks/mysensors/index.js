@@ -13,6 +13,12 @@ module.exports = function mySimpleHook(sails) {
       m.on('sensor.reading', function(data){
         sails.log('debug','Received Sensor Reading : ', data);
       });
+      m.on('device.add', function(data){
+        sails.log('debug','device add ... ', data);
+      });
+      m.on('sensor.add', function(data){
+        sails.log('debug','sensor add : ', data);
+      })
       m.init({debug : true, portname : '/dev/ttyMySensorsGateway'});
       m.openConnection(function(){
         m.start();

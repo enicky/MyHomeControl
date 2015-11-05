@@ -661,9 +661,7 @@ MySensorNode.prototype.addDevice = function(internalid, devicetype, that) {
   var splittedId = internalid.split('/');
   var deviceTypeString = that.getDeviceTypeName(devicetype);
 
-  var Sensor = mongoose.model('SensorNode');
-  console.log('addDevice : ' + internalid + ' -- ' + devicetype);
-  Sensor.findOne({
+  that.sails.models.sensor.findOne({
     internalid: internalid.replace('/', ',')
   }).exec(function(err, sensor) {
     if (typeof(sensor) != "undefined" && sensor != null) {

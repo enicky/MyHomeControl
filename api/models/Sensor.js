@@ -10,6 +10,7 @@ module.exports = {
   attributes: {
     deviceId: {type: 'integer'},
     sensorId: { type: 'integer'},
+    internalid : {type : 'string'},
       type: {type: 'string'},
       counter_failed: {type: 'integer'},
       counter_retries: {type: 'integer'},
