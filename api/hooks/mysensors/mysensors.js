@@ -701,7 +701,7 @@ MySensorNode.prototype.addDevice = function(internalid, devicetype, that) {
 MySensorNode.prototype.saveDeviceInfo = function(that, deviceInfo, internalid, cb) {
 
 
-  that.sails.models.sensor.findOneAndUpdate({
+  that.sails.models.sensor.update({
     internalid: internalid.replace('/', ',')
   }, {
     $set: {
