@@ -475,7 +475,7 @@ var MySensorNode = function(sails) {
                   value: payload,
                   type: "humidity",
                   typeInt : enums.SensorData.V_HUM.value,
-                  typeString :  that.getDeviceTypeName(enums.SensorData.V_HUM.value)
+                  typeString :  that.getVariableTypeName(enums.SensorData.V_HUM.value)
                 });
                 break;
               case enums.SensorData.V_TEMP.value:
@@ -488,7 +488,9 @@ var MySensorNode = function(sails) {
                 that.emit('sensor.reading', {
                   id: internalid,
                   value: payload,
-                  type: 'temperature'
+                  type: 'temperature',
+                  typeInt : enums.SensorData.V_HUM.value,
+                  typeString :  that.getVariableTypeName(enums.SensorData.V_HUM.value)
                 });
                 break;
               case enums.SensorData.V_TRIPPED.value:
