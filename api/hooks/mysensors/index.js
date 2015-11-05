@@ -11,7 +11,6 @@ module.exports = function mySimpleHook(sails) {
       sails.log('debug','Starting the Process to poll for the serial port ... ');
       var m = new MySensorNode(sails);
       m.on('sensor.reading', function(data){
-        sails.log('debug','Received Sensor Reading : ', data);
         var newSensorValyue = {
           internalId : data.id,
           deviceId : parseInt(data.id.substring(0, data.id.indexOf('/'))),
