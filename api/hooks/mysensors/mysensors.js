@@ -551,7 +551,7 @@ var MySensorNode = function(sails) {
                 });
                 break;
             }
-            if (valid) {
+            if (valid && deviceInfo != null) {
               deviceInfo.value = payload;
               that.saveDeviceInfo(that, deviceInfo, internalid, function(err, res) {
                 if (err) console.error('error saving deviceInfo (SET_VARIABLE) : ' + err);
