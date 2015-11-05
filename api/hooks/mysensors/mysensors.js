@@ -305,7 +305,7 @@ var MySensorNode = function(sails) {
 
       that.getDeviceInfo(radioId, childId, function(err, deviceInfo) {
         sails.log('debug','DeviceInfo found : ', deviceInfo);
-        if (deviceInfo == null && (parseInt(messageType) != enums.SensorCommand.C_INTERNAL.value && parseInt(messageType) != enums.SensorCommand.C_PRESENTATION.value)) return;
+        //if (deviceInfo == null && (parseInt(messageType) != enums.SensorCommand.C_INTERNAL.value && parseInt(messageType) != enums.SensorCommand.C_PRESENTATION.value)) return;
         if (splittedMessage.length == 6) payload = splittedMessage[5];
         switch (parseInt(messageType)) {
           case enums.SensorCommand.C_INTERNAL.value:
@@ -474,6 +474,11 @@ var MySensorNode = function(sails) {
                 });
                 break;
               case enums.SensorData.V_TEMP.value:
+                if(deviceInfo == null){
+                  sails.log('debug','Got SensorData V_TEMP type, but no device. Register first ... ');
+                  that.newDevice(internalid,enums.SensorSensor.S_TEMP,that);
+                  sails.log('debug','Added Device ... emit reading');
+                }
                 valid = true;
                 that.emit('sensor.reading', {
                   id: internalid,

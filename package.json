@@ -26,7 +26,8 @@
     "sails-couchdb-orm": "^0.10.3",
     "sails-disk": "~0.10.0",
     "serialport": "^2.0.2",
-    "sugar": "^1.4.1"
+    "sugar": "^1.4.1",
+    "waterlock": "^0.1.2-rc1"
   },
   "scripts": {
     "debug": "node debug app.js",
